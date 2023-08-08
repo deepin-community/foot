@@ -1,0 +1,24 @@
+Description: Build verbosely in PGO script
+Author: Andrea Pappacoda <andrea@pappacoda.it>
+Forwarded: not-needed
+Last-Update: 2022-10-23
+
+diff --git a/pgo/pgo.sh b/pgo/pgo.sh
+index b2ce7fe..30cb8ec 100755
+--- a/pgo/pgo.sh
++++ b/pgo/pgo.sh
+@@ -94,7 +94,7 @@ if [ ${do_pgo} = yes ]; then
+          -delete
+ 
+     meson configure "${blddir}" -Db_pgo=generate
+-    ninja -C "${blddir}"
++    ninja -C "${blddir}" -v
+ 
+     # If fcft/tllist are subprojects, we need to ensure their tests
+     # have been executed, or we’ll get “profile count data file not
+@@ -114,4 +114,4 @@ if [ ${do_pgo} = yes ]; then
+     meson configure "${blddir}" -Db_pgo=use
+ fi
+ 
+-ninja -C "${blddir}"
++ninja -C "${blddir}" -v

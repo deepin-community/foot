@@ -1,4 +1,19 @@
 #!/usr/bin/make -f
 
+# optimize=-lto because the pgo script handles lto by itself
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all optimize=-lto
+
+# According to upstream's INSTALL.md, -O2 with PGO can create issues
+export DEB_CFLAGS_MAINT_STRIP = -O2
+
 %:
-	dh $@
+	dh $@ --builddir=build
+
+# meson setup is run by ./pgo/pgo.sh
+override_dh_auto_configure:
+
+override_dh_auto_build:
+	./pgo/pgo.sh partial . build --prefix=/usr --wrap-mode=nodownload
+
+execute_after_dh_auto_install:
+	rm debian/tmp/usr/share/doc/foot/LICENSE
