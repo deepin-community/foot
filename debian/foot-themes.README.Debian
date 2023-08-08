@@ -1,0 +1,11 @@
+foot themes on Debian
+----------------------
+
+This package contains various themes for the foot terminal emulator. To enable
+a theme, use the `include` directive in the foot.ini configuration file to
+include the theme file:
+
+[main]
+include=/usr/share/foot/themes/themefile
+
+ -- Birger Schacht <birger@debian.org>  Mon, 10 Jan 2022 17:33:12 +0100

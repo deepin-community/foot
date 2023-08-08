@@ -1,5 +1,202 @@
-template-repository (1.0-1) unstable; urgency=medium
+foot (1.15.3-1deepin) UNRELEASED; urgency=medium
 
-  * Initial release
+  * New upstream release
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- rewine <lhongxu@outllok.com>  Tue, 08 Aug 2023 08:01:28 +0000
+
+foot (1.15.1-2) unstable; urgency=medium
+
+  * Make foot-terminfo a transitional package and use ncurses-term instead
+    (Closes: #1041685)
+
+ -- Birger Schacht <birger@debian.org>  Mon, 24 Jul 2023 14:06:42 +0200
+
+foot (1.15.1-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Birger Schacht <birger@debian.org>  Sat, 22 Jul 2023 12:02:17 +0200
+
+foot (1.15.0-1) unstable; urgency=medium
+
+  * New upstream release
+  * Bump meson build-dependency to >= 0.59
+
+ -- Birger Schacht <birger@debian.org>  Tue, 18 Jul 2023 21:03:18 +0200
+
+foot (1.14.0-1) unstable; urgency=medium
+
+  * New upstream release
+  * d/patches: drop backported GCC detection patch (included upstream)
+  * d/control:
+   + Bump standards version to 4.6.2 (no changes required)
+   + Switch from libfreetype6-dev to libfreetype-dev
+  * d/copyright: Bump years
+
+ -- Birger Schacht <birger@debian.org>  Thu, 22 Jun 2023 21:17:46 +0200
+
+foot (1.13.1-2) unstable; urgency=medium
+
+  [ Andrea Pappacoda ]
+  * d/control: enable grapheme clustering (Closes: #1022533)
+  * d/control: add systemd to the list of Build-Dependencies, as upstream's
+    build process only installs systemd unit files if systemd's pkg-config
+    file is installed on the build machine (Closes: #1022379)
+  * d/rules: build with PGO.
+    Upstream makes using profile-guided optimizations extremely easy, and
+    encourages packagers to do so. Building with PGO allows foot to be
+    able to offer slightly better latency.
+  * d/patches: backport patch for GCC detection in PGO script and add patch to
+    make PGO script more verbose
+  * d/control: provide x-terminal-emulator.
+    Foot is Wayland-only, but an "X terminal emulator" is simply a graphical
+    terminal emulator; the Policy refers to X specifically because it has been
+    _the_ synonym of graphical for decades. This is also why foot is in
+    Section: x11
+    Policy states that terminal emulator alternatives _should_ have a
+    priority of 20, and the main foot binary does. At the same time,
+    footclient is installed as an additional alternative with lower
+    priority, 10, allowing users running a foot server in the background to
+    set the lightweight client as their default terminal emulator. As the
+    foot client depends on a running server, and no such server runs by
+    default, it has a lower priority so that it won't ever be automatically
+    selected by the alternatives system.
+
+ -- Birger Schacht <birger@debian.org>  Wed, 26 Oct 2022 11:15:54 +0200
+
+foot (1.13.1-1) unstable; urgency=medium
+
+  * New upstream release
+  * Add foot-server systemd service and socket files to d/foot.install
+
+ -- Birger Schacht <birger@debian.org>  Wed, 31 Aug 2022 20:08:52 +0200
+
+foot (1.13.0-1) unstable; urgency=medium
+
+  * New upstream release
+  * Bump Standards-Version to 4.6.1.0 (no changes required)
+
+ -- Birger Schacht <birger@debian.org>  Sun, 07 Aug 2022 18:44:20 +0200
+
+foot (1.12.1-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Birger Schacht <birger@debian.org>  Wed, 04 May 2022 18:03:06 +0200
+
+foot (1.12.0-1) unstable; urgency=medium
+
+  * New upstream release
+  * Update path for example config in d/foot.install
+  * Set minimum required meson version in d/control
+
+ -- Birger Schacht <birger@debian.org>  Sat, 23 Apr 2022 08:34:19 +0200
+
+foot (1.11.0-2) unstable; urgency=medium
+
+  * Don't use dh-exec to move zsh completions to correct directory, but use a
+    patch (because of #831786) (Closes: #1006194)
+  * Drop filenamemangle option from d/watch
+
+ -- Birger Schacht <birger@debian.org>  Mon, 21 Feb 2022 10:05:17 +0100
+
+foot (1.11.0-1) unstable; urgency=medium
+
+  * New upstream release
+  * Add dh-exec to build-depends and use dh-exec in d/foot.install to install
+    zsh completions to correct directory (Closes: #1004836)
+  * Bump min version of libfcft-dev in build-depends
+
+ -- Birger Schacht <birger@debian.org>  Sun, 13 Feb 2022 09:50:59 +0100
+
+foot (1.10.3-2) unstable; urgency=medium
+
+  * Add a README to the foot-themes package explaining how to enable a theme
+    (Closes: #1003086)
+
+ -- Birger Schacht <birger@debian.org>  Mon, 10 Jan 2022 17:36:03 +0100
+
+foot (1.10.3-1) unstable; urgency=medium
+
+  * New upstream release (Closes: #988593)
+  * Introduce new package foot-themes that contains the upstream shipped theme
+    files
+  * Update years in d/copyright
+  * Bump standards-version to 4.6.0.1 (no changes required)
+  * Bump libfcft dependency to >=2.4.0
+  * Ship bash-completion files
+
+ -- Birger Schacht <birger@debian.org>  Mon, 03 Jan 2022 12:42:13 +0100
+
+foot (1.6.4-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Birger Schacht <birger@debian.org>  Sat, 13 Feb 2021 08:49:18 +0100
+
+foot (1.6.3-1) unstable; urgency=medium
+
+  * New upstream release
+  * d/foot.install: add completions for fish shell
+
+ -- Birger Schacht <birger@debian.org>  Sat, 30 Jan 2021 14:29:10 +0100
+
+foot (1.6.2-1) unstable; urgency=medium
+
+  * New upstream release
+  * Drop d/copyright paragraphs for removed files
+
+ -- Birger Schacht <birger@debian.org>  Sun, 27 Dec 2020 14:25:28 +0100
+
+foot (1.5.4-1) unstable; urgency=medium
+
+  * New upstream release
+  * Bump standards version to 4.5.1 (no changes requird)
+
+ -- Birger Schacht <birger@debian.org>  Sat, 05 Dec 2020 18:25:09 +0100
+
+foot (1.5.3-4) unstable; urgency=medium
+
+  * Add missing Breaks+Replaces to foot-terminfo
+    (Closes: #975889)
+
+ -- Birger Schacht <birger@debian.org>  Thu, 26 Nov 2020 15:51:17 +0100
+
+foot (1.5.3-3) unstable; urgency=medium
+
+  * Source-only upload as is.
+
+ -- Birger Schacht <birger@debian.org>  Tue, 24 Nov 2020 16:13:35 +0100
+
+foot (1.5.3-2) unstable; urgency=medium
+
+  * Create a separate package `foot-terminfo` for the foot
+    terminfo files (Closes: #975534)
+
+ -- Birger Schacht <birger@debian.org>  Mon, 23 Nov 2020 16:12:59 +0100
+
+foot (1.5.3-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Birger Schacht <birger@debian.org>  Sat, 07 Nov 2020 08:35:02 +0100
+
+foot (1.5.2-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Birger Schacht <birger@debian.org>  Tue, 13 Oct 2020 14:58:56 +0200
+
+foot (1.5.0-1) unstable; urgency=medium
+
+  * New upstream release
+  * d/control: add build dependencies harfbuzz and ffi and
+    set min versions for tllist and fcft
+
+ -- Birger Schacht <birger@debian.org>  Fri, 09 Oct 2020 20:38:49 +0200
+
+foot (1.4.4-1) unstable; urgency=medium
+
+  * Initial release. (Closes: #966327)
+
+ -- Birger Schacht <birger@debian.org>  Fri, 07 Aug 2020 19:01:39 +0200

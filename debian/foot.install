@@ -1,0 +1,10 @@
+usr/bin
+usr/share/applications
+usr/share/doc/foot
+etc/xdg/foot/foot.ini
+usr/share/icons/hicolor
+usr/share/man
+usr/share/zsh/vendor-completions
+usr/share/fish/vendor_completions.d
+usr/share/bash-completion
+usr/lib/systemd
